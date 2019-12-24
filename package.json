@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sudo0272/SantaGambling/issues"
   },
-  "homepage": "https://github.com/sudo0272/SantaGambling#readme"
+  "homepage": "https://github.com/sudo0272/SantaGambling#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
