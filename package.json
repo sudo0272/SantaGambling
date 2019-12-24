@@ -1,0 +1,19 @@
+{
+  "name": "santagambling",
+  "version": "1.0.0",
+  "description": "산타가 진행하는 도박 게임",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudo0272/SantaGambling.git"
+  },
+  "author": "홍세정",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudo0272/SantaGambling/issues"
+  },
+  "homepage": "https://github.com/sudo0272/SantaGambling#readme"
+}
