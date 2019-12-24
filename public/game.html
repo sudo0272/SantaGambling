@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>산타의 선물</title>
+</head>
+<body>
+    <div id="gift-count"></div>
+    <div>
+        <span>배팅할 선물 개수: </span>
+        <input type="number" min="1" step="1" id="batting">
+    </div>
+    <div>
+        <span>확률: </span>
+        <input type="number" min="1" max="100" step="1" id="probability">
+    </div>
+    <div>
+        <button id="gamble">시작</button>
+    </div>
+
+    <script>
+        let giftCount = document.getElementById('gift-count');
+        let batting = document.getElementById('batting');
+        let probability = document.getElementById('probability');
+        let gamble = document.getElementById('gamble');
+
+        giftCount.innerText = '1';
+
+        gamble.addEventListener('click', () => {
+            let result;
+            let isWon;
+
+            if ((Math.floor(Math.random() * 100) + 1) <= probability.value) {
+                result = Math.round((100 - probability.value) / 100 * batting.value);
+
+                isWon = true;
+            } else {
+                result = 0;
+
+                isWon = false;
+            }
+
+            if (isWon) {
+                alert(result + '원 지급되었습니다');
+            } else {
+                alert('당첨되지 못하였습니다');
+            }
+
+            giftCount.value += result;
+        }
+    </script>
+</body>
+</html>
