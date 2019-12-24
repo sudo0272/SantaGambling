@@ -7,10 +7,13 @@
     <title>산타의 선물</title>
 </head>
 <body>
-    <div id="gift-count"></div>
+    <div>
+        <span>현재 선물 개수: </span>
+        <span id="gift-count">1</span>
+    </div>
     <div>
         <span>배팅할 선물 개수: </span>
-        <input type="number" min="1" step="1" id="batting">
+        <input type="number" min="1" max="1" step="1" id="batting">
     </div>
     <div>
         <span>확률: </span>
@@ -26,30 +29,35 @@
         let probability = document.getElementById('probability');
         let gamble = document.getElementById('gamble');
 
-        giftCount.innerText = '1';
-
         gamble.addEventListener('click', () => {
             let result;
             let isWon;
 
-            if ((Math.floor(Math.random() * 100) + 1) <= probability.value) {
-                result = Math.round((100 - probability.value) / 100 * batting.value);
+            if ((Math.floor(Math.random() * 100) + 1) <= parseInt(probability.value)) {
+                result = Math.round((100 - parseInt(probability.value)) / 100 * parseInt(batting.value));
 
-                isWon = true;
+                giftCount.innerText = parseInt(giftCount.innerText) + result;
+
+                alert(result + '개의 선물이 지급되었습니다');
             } else {
                 result = 0;
 
-                isWon = false;
+                alert('당첨되지 못하였습니다')
+
+                if (parseInt(giftCount.innerText) - parseInt(batting.value) <= 0) {
+                    giftCount.innerText = 0
+
+                    alert('허허허 욕심을 부리지 말았어야지요');
+                    alert('잘가라');
+
+                    document.write('본전도 못 얻었네ㅋ');
+                } else {
+                    giftCount.innerText = parseInt(giftCount.innerText) - parseInt(batting.value);
+                }
             }
 
-            if (isWon) {
-                alert(result + '원 지급되었습니다');
-            } else {
-                alert('당첨되지 못하였습니다');
-            }
-
-            giftCount.value += result;
-        }
+            batting.setAttribute('max', giftCount.innerText);
+        });
     </script>
 </body>
 </html>
