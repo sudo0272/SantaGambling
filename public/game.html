@@ -36,30 +36,40 @@
             let probabilityValue = parseInt(probability.value);
             let battingValue = parseInt(batting.value);
 
-            if ((Math.floor(Math.random() * 100) + 1) <= probabilityValue) {
-                result = Math.round((100 - probabilityValue) / 100 * battingValue);
-
-                giftCount.innerText = giftCountValue + result;
-
-                alert(result + '개의 선물이 지급되었습니다');
+            if (battingValue === NaN) {
+                alert('배팅할 선물의 개수가 입력되지 않았습니다');
+            } else if (probabilityValue === NaN) {
+                alert('확률이 입력되지 않았습니다');
+            } else if (!(1 <= battingValue && battingValue <= giftCountValue)) {
+                alert('배팅할 선물의 개수는 1과 현재 선물 개수 사이의 값을 입력해주세요');
+            } else if (!(1 <= probabilityValue && probabilityValue <= 100)) {
+                alert('확률을 1과 100 사이의 값을 입력해주세요');
             } else {
-                result = 0;
+                if ((Math.floor(Math.random() * 100) + 1) <= probabilityValue) {
+                    result = Math.round((100 - probabilityValue) / 100 * battingValue);
 
-                alert('당첨되지 못하였습니다')
+                    giftCount.innerText = giftCountValue + result;
 
-                if (giftCountValue - battingValue <= 0) {
-                    giftCount.innerText = 0
-
-                    alert('허허허 욕심을 부리지 말았어야지요');
-                    alert('잘가라');
-
-                    document.write('본전도 못 얻었네ㅋ');
+                    alert(result + '개의 선물이 지급되었습니다');
                 } else {
-                    giftCount.innerText = giftCountValue - battingValue;
-                }
-            }
+                    result = 0;
 
-            batting.setAttribute('max', giftCount.innerText);
+                    alert('당첨되지 못하였습니다')
+
+                    if (giftCountValue - battingValue <= 0) {
+                        giftCount.innerText = 0
+
+                        alert('허허허 욕심을 부리지 말았어야지요');
+                        alert('잘가라');
+
+                        document.write('본전도 못 얻었네ㅋ');
+                    } else {
+                        giftCount.innerText = giftCountValue - battingValue;
+                    }
+                }
+
+                batting.setAttribute('max', giftCount.innerText);
+            } 
         });
     </script>
 </body>
