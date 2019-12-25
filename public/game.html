@@ -32,11 +32,14 @@
         gamble.addEventListener('click', () => {
             let result;
             let isWon;
+            let giftCountValue = parseInt(giftCount.innerText)
+            let probabilityValue = parseInt(probability.value);
+            let battingValue = parseInt(batting.value);
 
-            if ((Math.floor(Math.random() * 100) + 1) <= parseInt(probability.value)) {
-                result = Math.round((100 - parseInt(probability.value)) / 100 * parseInt(batting.value));
+            if ((Math.floor(Math.random() * 100) + 1) <= probabilityValue) {
+                result = Math.round((100 - probabilityValue) / 100 * battingValue);
 
-                giftCount.innerText = parseInt(giftCount.innerText) + result;
+                giftCount.innerText = giftCountValue + result;
 
                 alert(result + '개의 선물이 지급되었습니다');
             } else {
@@ -44,7 +47,7 @@
 
                 alert('당첨되지 못하였습니다')
 
-                if (parseInt(giftCount.innerText) - parseInt(batting.value) <= 0) {
+                if (giftCountValue - battingValue <= 0) {
                     giftCount.innerText = 0
 
                     alert('허허허 욕심을 부리지 말았어야지요');
@@ -52,7 +55,7 @@
 
                     document.write('본전도 못 얻었네ㅋ');
                 } else {
-                    giftCount.innerText = parseInt(giftCount.innerText) - parseInt(batting.value);
+                    giftCount.innerText = giftCountValue - battingValue;
                 }
             }
 
@@ -61,4 +64,3 @@
     </script>
 </body>
 </html>
-
